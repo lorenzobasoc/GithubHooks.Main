@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GithubHooks.Main3", "GithubHooks.Main3.csproj", "{77BABCA2-2602-48D5-983B-BC3769622061}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GithubHooks.Main", "GithubHooks.Main.csproj", "{77BABCA2-2602-48D5-983B-BC3769622061}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
