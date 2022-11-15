@@ -1,0 +1,141 @@
+name: Run Applications when pull request
+
+on:
+#   push:
+  pull_request:
+    branches: [ "main" ]
+    
+jobs:
+  run:
+
+    runs-on: windows-latest     # for other versions --> https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners
+
+    steps:
+    - uses: actions/checkout@v3
+    
+
+                  #    
+                  #   Run .NET Core Console Application's Artifact from another Repo
+                  # 
+    - name: Get .NET Core Console App Artifact
+      uses: dawidd6/action-download-artifact@v2
+      with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          workflow: artifacts-action.yaml
+          repo:  massimilianokraus-prometeia/GithubHooks.Dotnet_Core_Console
+    - name: Run Console App Artifact          
+      run: dotnet ./console-app-artifacts/GithubHooks.Dotnet_Core_Console.dll
+    - run: gh pr merge ${{ github.event.pull_request.number }} --auto --merge
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - run: gh pr review ${{ github.event.pull_request.number }} --approve
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
+                  #    
+                  #   Run .NET Core Console Application's Artifact from another Repo
+                  # 
+#     - name: Get .NET Core Console App Artifact
+#       uses: dawidd6/action-download-artifact@v2
+#       with:
+#           github_token: ${{ secrets.GITHUB_TOKEN }}
+#           workflow: artifacts-action.yaml
+#           repo:  massimilianokraus-prometeia/GithubHooks.Dotnet_Core_Console
+#     - name: Run Console App Artifact          
+#       run: dotnet ./console-app-artifacts/GithubHooks.Dotnet_Core_Console.dll
+
+
+    
+                  #    
+                  #   Run .NET Core Console Application from another Repo with a .bat file contained in that repo
+                  # 
+#     - name: Checkout Dotnet Core Console Repo
+#       uses: actions/checkout@v2
+#       with:
+#         repository: massimilianokraus-prometeia/GithubHooks.Dotnet_Core_Console
+#         token: ${{ secrets.GITHUB_TOKEN }}
+#     - run: ./execute_console_app.bat "${{ github.event.pull_request.title }}" "${{ github.event.pull_request.body }}"
+
+    
+    
+                    #    
+                    #   Run .NET Core Console Application from another Repo
+                    # 
+#     - name: Checkout Dotnet Core Console Repo
+#       uses: actions/checkout@v2
+#       with:
+#         repository: massimilianokraus-prometeia/GithubHooks.Dotnet_Core_Console
+#         token: ${{ secrets.GITHUB_TOKEN }}
+#     - run: dotnet run -- "${{ github.sha }}" "${{ github.actor }}" "${{ github.event.head_commit.message }}"
+    
+    
+    
+                    #    
+                    #   Run .NET Framework 4.8 Console Application from another Repo with a .bat file contained in that Repo
+                    # 
+#     - name: Checkout Dotnet 4.8 Console Repo
+#       uses: actions/checkout@v2
+#       with:
+#         repository: massimilianokraus-prometeia/GithubHooks.Dotnet_48_Console
+#         token: ${{ secrets.GITHUB_TOKEN }}
+#     - name: Setup MSBuild
+#       uses: microsoft/setup-msbuild@v1
+    
+#     - name: Setup NuGet
+#       uses: NuGet/setup-nuget@v1.0.5
+    
+#     - name: Build the Solution
+#       run: msbuild GithubHooks.Dotnet_48_Console.sln /p:Configuration=Release
+#     - name: Run .bat file
+#       run: ./execute_console_app.bat "${{ github.sha }}" "${{ github.actor }}" "${{ github.event.head_commit.message }}"
+    
+    
+    
+                    #    
+                    #   Run .NET Framework 4.8 Console Application from another Repo
+                    # 
+#     - name: Checkout Dotnet 4.8 Console Repo
+#       uses: actions/checkout@v2
+#       with:
+#         repository: massimilianokraus-prometeia/GithubHooks.Dotnet_48_Console
+#         token: ${{ secrets.GITHUB_TOKEN }}
+#     - name: Setup MSBuild
+#       uses: microsoft/setup-msbuild@v1
+    
+#     - name: Setup NuGet
+#       uses: NuGet/setup-nuget@v1.0.5
+    
+#     - name: Build the Solution
+#       run: msbuild GithubHooks.Dotnet_48_Console.sln /p:Configuration=Release
+#     - name: Run App
+#       run: | 
+#         cd ./bin/Release
+#         .\GithubHooks.Dotnet_48_Console.exe "${{ github.sha }}" "${{ github.actor }}" "${{ github.event.head_commit.message }}"
+
+
+
+                      #
+                      #   Run NodeJs Application from another repo
+                      #
+#     - name: Checkout NodeJs Application Repo
+#       uses: actions/checkout@v2
+#       with:
+#         repository: massimilianokraus-prometeia/GithubHooks.NodeJs
+#         token: ${{ secrets.GITHUB_TOKEN }}
+#     - run: node ./index.js argv.js "${{ github.sha }}" "${{ github.actor }}" "${{ github.event.head_commit.message }}"
+
+
+
+                      #
+                      #   Run NodeJs Application from another repo with a .bat file 
+                      #
+#     - name: Checkout NodeJs Application Repo
+#       uses: actions/checkout@v2
+#       with:
+#         repository: massimilianokraus-prometeia/GithubHooks.NodeJs
+#         token: ${{ secrets.GITHUB_TOKEN }}
+#     - name: Setup Node
+#       uses: actions/setup-node@v3
+#       with:
+#         node-version: 16
+#     - run: ./execute_nodejs_app.bat "${{ github.sha }}" "${{ github.actor }}" "${{ github.event.head_commit.message }}"
