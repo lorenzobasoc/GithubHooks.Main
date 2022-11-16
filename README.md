@@ -1,1 +1,1 @@
-# GithubHooks.Main README
+# GithubHooks.Main
