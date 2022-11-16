@@ -11,14 +11,15 @@ jobs:
     runs-on: windows-latest     # for other versions --> https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners
 
     steps:
-    - uses: actions/checkout@v3
+    - name: Checkout Repo
+      uses: actions/checkout@v3
     
 
                   #    
                   #   Run .NET Core Console Application's Artifact from another Repo
                   # 
     - name: Get .NET Core Console App Artifact
-      uses: dawidd6/action-download-artifact@v2
+      uses: dawidd6/action-download-artifact@v3
       with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           workflow: artifacts-action.yaml
@@ -38,7 +39,7 @@ jobs:
                   #   Run .NET Core Console Application's Artifact from another Repo
                   # 
 #     - name: Get .NET Core Console App Artifact
-#       uses: dawidd6/action-download-artifact@v2
+#       uses: dawidd6/action-download-artifact@v3
 #       with:
 #           github_token: ${{ secrets.GITHUB_TOKEN }}
 #           workflow: artifacts-action.yaml
@@ -52,7 +53,7 @@ jobs:
                   #   Run .NET Core Console Application from another Repo with a .bat file contained in that repo
                   # 
 #     - name: Checkout Dotnet Core Console Repo
-#       uses: actions/checkout@v2
+#       uses: actions/checkout@v3
 #       with:
 #         repository: massimilianokraus-prometeia/GithubHooks.Dotnet_Core_Console
 #         token: ${{ secrets.GITHUB_TOKEN }}
@@ -64,7 +65,7 @@ jobs:
                     #   Run .NET Core Console Application from another Repo
                     # 
 #     - name: Checkout Dotnet Core Console Repo
-#       uses: actions/checkout@v2
+#       uses: actions/checkout@v3
 #       with:
 #         repository: massimilianokraus-prometeia/GithubHooks.Dotnet_Core_Console
 #         token: ${{ secrets.GITHUB_TOKEN }}
@@ -76,7 +77,7 @@ jobs:
                     #   Run .NET Framework 4.8 Console Application from another Repo with a .bat file contained in that Repo
                     # 
 #     - name: Checkout Dotnet 4.8 Console Repo
-#       uses: actions/checkout@v2
+#       uses: actions/checkout@v3
 #       with:
 #         repository: massimilianokraus-prometeia/GithubHooks.Dotnet_48_Console
 #         token: ${{ secrets.GITHUB_TOKEN }}
@@ -97,7 +98,7 @@ jobs:
                     #   Run .NET Framework 4.8 Console Application from another Repo
                     # 
 #     - name: Checkout Dotnet 4.8 Console Repo
-#       uses: actions/checkout@v2
+#       uses: actions/checkout@v3
 #       with:
 #         repository: massimilianokraus-prometeia/GithubHooks.Dotnet_48_Console
 #         token: ${{ secrets.GITHUB_TOKEN }}
@@ -120,7 +121,7 @@ jobs:
                       #   Run NodeJs Application from another repo
                       #
 #     - name: Checkout NodeJs Application Repo
-#       uses: actions/checkout@v2
+#       uses: actions/checkout@v3
 #       with:
 #         repository: massimilianokraus-prometeia/GithubHooks.NodeJs
 #         token: ${{ secrets.GITHUB_TOKEN }}
@@ -132,7 +133,7 @@ jobs:
                       #   Run NodeJs Application from another repo with a .bat file 
                       #
 #     - name: Checkout NodeJs Application Repo
-#       uses: actions/checkout@v2
+#       uses: actions/checkout@v3
 #       with:
 #         repository: massimilianokraus-prometeia/GithubHooks.NodeJs
 #         token: ${{ secrets.GITHUB_TOKEN }}
