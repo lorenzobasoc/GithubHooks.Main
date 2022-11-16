@@ -24,11 +24,6 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           workflow: artifacts-action.yaml
           repo:  massimilianokraus-prometeia/GithubHooks.Dotnet_Core_Console
-    - name: Checkout Dotnet Core Console Repo
-      uses: actions/checkout@v3
-      with:
-        repository: massimilianokraus-prometeia/GithubHooks.Dotnet_Core_Console
-        token: ${{ secrets.GITHUB_TOKEN }}
     - name: Run Console App Artifact          
       run: dotnet ./console-app-artifacts/GithubHooks.Dotnet_Core_Console.dll
     - name: Enable Automerge
