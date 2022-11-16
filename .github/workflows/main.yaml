@@ -19,11 +19,16 @@ jobs:
                   #   Run .NET Core Console Application's Artifact from another Repo
                   # 
     - name: Get .NET Core Console App Artifact
-      uses: dawidd6/action-download-artifact@v3
+      uses: dawidd6/action-download-artifact@v2
       with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           workflow: artifacts-action.yaml
           repo:  massimilianokraus-prometeia/GithubHooks.Dotnet_Core_Console
+    - name: Checkout Dotnet Core Console Repo
+      uses: actions/checkout@v3
+      with:
+        repository: massimilianokraus-prometeia/GithubHooks.Dotnet_Core_Console
+        token: ${{ secrets.GITHUB_TOKEN }}
     - name: Run Console App Artifact          
       run: dotnet ./console-app-artifacts/GithubHooks.Dotnet_Core_Console.dll
     - name: Enable Automerge
@@ -39,7 +44,7 @@ jobs:
                   #   Run .NET Core Console Application's Artifact from another Repo
                   # 
 #     - name: Get .NET Core Console App Artifact
-#       uses: dawidd6/action-download-artifact@v3
+#       uses: dawidd6/action-download-artifact@v2
 #       with:
 #           github_token: ${{ secrets.GITHUB_TOKEN }}
 #           workflow: artifacts-action.yaml
